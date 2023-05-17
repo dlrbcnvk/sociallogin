@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../static/css/login.css" />
+    <title>Login</title>
+</head>
+<body>
+    <div sec:authorize="isAnonymous()" class="anonymous">
+        <form th:action="@{/login}" class="login--form" method="post">
+            <div>
+                <div><label for="username">Username: </label></div>
+                <input type="text" id="username" name="username">
+            </div>
+            <div>
+                <div><label for="password">Password: </label></div>
+                <input type="password" id="password" name="password" placeholder="Password" />
+            </div>
+            <input type="submit" value="Log In" />
+        </form>
+    </div>
+    <div class="anonymous__link">
+        <a th:href="@{/oauth2/authorization/google}" class="googleAnonymous">Sign in with Google</a>
+    </div>
+    <div class="anonymous__link">
+        <a th:href="@{/oauth2/authorization/naver}" class="naverAnonymous">Sign in with Naver</a>
+    </div>
+    <div class="anonymous__link">
+        <a th:href="@{/oauth2/authorization/kakao}" class="keycloakAnonymous">Sign in with Kakao</a>
+    </div>
+    <div class="anonymous__link">
+        <a th:href="@{/oauth2/authorization/github}" class="keycloakAnonymous">Sign in with Github</a>
+    </div>
+    <div class="anonymous__link">
+        <a th:href="@{/oauth2/authorization/facebook}" class="keycloakAnonymous">Sign in with Facebook</a>
+    </div>
+
+    <div sec:authorize="isAuthenticated()" class="authenticated">
+        <div class="hello--text">
+            <h2>안녕하세요 <span th:text="${user}"></span>님</h2>
+        </div>
+
+
+    </div>
+</body>
+</html>

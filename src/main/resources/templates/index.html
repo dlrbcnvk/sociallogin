@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Index</title>
+    <link rel="stylesheet" href="../static/css/index.css" />
+</head>
+<body>
+    <div class="container">
+        <div sec:authorize="isAnonymous()" class="anonymous">
+            <div class="hello--text">익명 사용자 ㅎㅇ</div>
+            <div class="login">
+                <a th:href="@{/login}">Login</a>
+            </div>
+        </div>
+        <div sec:authorize="isAuthenticated()" class="authenticated">
+            <h2>인증받았음.</h2>
+            <div class="authenticated">
+                <a th:href="@{/api/user}" class="oauth2">oauth2 log</a>
+            </div>
+            <div class="authenticated">
+                <a th:href="@{/api/oidc}" class="oidc">oidc log</a>
+            </div>
+            <div class="logout">
+                <a th:href="@{/logout}">로그아웃</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
